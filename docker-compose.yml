@@ -1,14 +1,14 @@
 version: '3.8'
 services:
   frontend:
-    build: ./frontend
+    build: ./web-app-kidsartceaft-frontend
     ports:
       - "80:80"
     depends_on:
       - backend
 
   backend:
-    build: ./backend
+    build: ./web-app-kidsartcraft-backend
     ports:
       - "5000:5000"
     environment:
