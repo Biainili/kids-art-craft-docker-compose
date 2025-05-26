@@ -11,7 +11,7 @@ services:
   backend:
     build: ./web-app-kidsartcraft-backend
     env_file:
-      - .env
+      - ./web-app-kidsartcraft-backend/.env
     depends_on:
       - db
 
