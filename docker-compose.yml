@@ -18,7 +18,7 @@ services:
   db:
     image: postgres:15
     env_file:
-      - .env
+      - ./web-app-kidsartcraft-backend/.env
     volumes:
       - pgdata:/var/lib/postgresql/data
 
