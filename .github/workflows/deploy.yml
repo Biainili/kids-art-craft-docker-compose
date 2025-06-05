@@ -1,19 +1,13 @@
-name: Deploy Docker Compose
-
+name: Full redeploy
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  redeploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Deploy to server via SSH
+      - uses: actions/checkout@v3
+      - name: SSH full restart
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -21,8 +15,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~/kids-art-craft-docker-compose
-            git pull origin main  
-
-
-            docker-compose down
-            docker-compose up -d
+            git pull origin main
+            docker-compose -p ubuntu down
+            docker-compose -p ubuntu up -d --build
